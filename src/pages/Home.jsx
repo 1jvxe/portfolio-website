@@ -61,58 +61,34 @@ const skills = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.14,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-};
-
 function Home() {
   return (
     <section className="section-wrap pb-16">
       <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
         <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
           className="glass-panel overflow-hidden rounded-[36px] p-7 md:p-10"
         >
-          <motion.span variants={item} className="section-label">
+          <span className="section-label">
             <span className="accent-dot" />
             Frontend Developer based in Tbilisi
-          </motion.span>
+          </span>
 
-          <motion.h1
-            variants={item}
-            className="hero-title mt-6 max-w-4xl text-5xl font-extrabold leading-[0.95] text-[var(--text)] md:text-7xl"
-          >
+          <h1 className="hero-title mt-6 max-w-4xl text-5xl font-extrabold leading-[0.95] text-[var(--text)] md:text-7xl">
             I build interfaces that feel
             <span className="text-accent"> modern</span>,
             <span className="text-accent"> smooth</span>, and alive.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl"
-          >
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
             I&apos;m Abdal-Rahman Tawakalna, a frontend developer focused on
             clean React builds, engaging UI motion, responsive design, and the
             kind of visual detail that makes a portfolio feel memorable.
-          </motion.p>
+          </p>
 
-          <motion.div
-            variants={item}
-            className="mt-8 flex flex-col gap-4 sm:flex-row"
-          >
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Link to="/projects" className="primary-button">
               View Projects
               <FiArrowRight />
@@ -120,9 +96,9 @@ function Home() {
             <Link to="/contact" className="secondary-button">
               Contact Me
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="https://github.com/1jvxe"
               target="_blank"
@@ -141,12 +117,9 @@ function Home() {
               <FiLinkedin />
               LinkedIn
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={item}
-            className="mt-10 grid gap-4 md:grid-cols-3"
-          >
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
             {introStats.map((stat) => (
               <div
                 key={stat.value}
@@ -163,13 +136,13 @@ function Home() {
                 </p>
               </div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 32 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.75, ease: "easeOut", delay: 0.2 }}
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 }}
           className="flex flex-col gap-6"
         >
           <div className="glass-panel relative overflow-hidden rounded-[36px] p-5 md:p-7">
@@ -196,14 +169,8 @@ function Home() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-            {highlights.map((card, index) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 + index * 0.12, duration: 0.5 }}
-                className="soft-card rounded-[28px] p-6"
-              >
+            {highlights.map((card) => (
+              <div key={card.title} className="soft-card rounded-[28px] p-6">
                 <div className="inline-flex rounded-2xl bg-[var(--soft-accent)] p-3 text-[var(--secondary)]">
                   {card.icon}
                 </div>
@@ -213,7 +180,7 @@ function Home() {
                 <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
                   {card.text}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
@@ -247,12 +214,9 @@ function Home() {
         </div>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {skills.map((skill, index) => (
-            <motion.article
+          {skills.map((skill) => (
+            <article
               key={skill.title}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + index * 0.12, duration: 0.45 }}
               className="soft-card rounded-[30px] p-6"
             >
               <div className="inline-flex rounded-2xl bg-[var(--soft-accent)] p-3 text-[var(--accent-dark)]">
@@ -274,7 +238,7 @@ function Home() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </motion.div>

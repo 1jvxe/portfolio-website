@@ -89,16 +89,12 @@ function Contacts() {
         </motion.div>
 
         <div className="grid gap-5">
-          {contactItems.map((item, index) => (
-            <motion.a
+          {contactItems.map((item) => (
+            <a
               key={item.label}
               href={item.href}
               target={item.href.startsWith("http") ? "_blank" : undefined}
               rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              initial={{ opacity: 0, x: 18 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.12 + index * 0.1, duration: 0.45 }}
-              whileHover={{ y: -4 }}
               className="soft-card rounded-[30px] p-6"
             >
               <div className="flex items-start justify-between gap-4">
@@ -120,7 +116,7 @@ function Contacts() {
                 </div>
                 <FiArrowUpRight className="mt-1 text-[var(--muted)]" />
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

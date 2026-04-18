@@ -64,20 +64,9 @@ function About() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="grid gap-5"
-        >
-          {qualities.map((quality, index) => (
-            <motion.article
-              key={quality.title}
-              initial={{ opacity: 0, x: 18 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 + index * 0.12, duration: 0.45 }}
-              className="soft-card rounded-[30px] p-7"
-            >
+        <div className="grid gap-5">
+          {qualities.map((quality) => (
+            <article key={quality.title} className="soft-card rounded-[30px] p-7">
               <div className="inline-flex rounded-2xl bg-[var(--soft-accent)] p-3 text-[var(--accent-dark)]">
                 {quality.icon}
               </div>
@@ -87,7 +76,7 @@ function About() {
               <p className="mt-3 text-base leading-7 text-[var(--muted)]">
                 {quality.text}
               </p>
-            </motion.article>
+            </article>
           ))}
 
           <div className="grid gap-5 md:grid-cols-2">
@@ -114,7 +103,7 @@ function About() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

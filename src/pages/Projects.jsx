@@ -76,16 +76,12 @@ function Projects() {
       </motion.div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <motion.a
+        {projects.map((project) => (
+          <a
             key={project.title}
             href={project.href}
             target="_blank"
             rel="noreferrer"
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + index * 0.12, duration: 0.5 }}
-            whileHover={{ y: -8 }}
             className="soft-card group flex h-full flex-col rounded-[32px] p-7"
           >
             <div className="flex items-start justify-between gap-4">
@@ -121,7 +117,7 @@ function Projects() {
                 <FiArrowUpRight />
               </span>
             </div>
-          </motion.a>
+          </a>
         ))}
       </div>
     </section>
