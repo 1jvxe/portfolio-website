@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: abdtawakalna.com
+Sitemap: https://abdtawakalna.com/sitemap.xml

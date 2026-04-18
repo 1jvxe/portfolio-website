@@ -1,94 +1,128 @@
-import { motion } from "framer-motion";
-import { FiMail, FiGithub, FiLinkedin, FiPhone, FiCopy } from "react-icons/fi";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FiArrowUpRight,
+  FiCopy,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiPhone,
+} from "react-icons/fi";
+
+const email = "abudytawakalna@gmail.com";
+
+const contactItems = [
+  {
+    label: "Email",
+    value: email,
+    href: `mailto:${email}`,
+    icon: <FiMail size={20} />,
+    note: "Best for opportunities and project conversations",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/1jvxe",
+    href: "https://github.com/1jvxe",
+    icon: <FiGithub size={20} />,
+    note: "Code, experiments, and future project updates",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/abdal-rahman-tawakalna",
+    href: "https://www.linkedin.com/in/abdal-rahman-tawakalna-a267b23b2",
+    icon: <FiLinkedin size={20} />,
+    note: "Professional profile and networking",
+  },
+  {
+    label: "Phone",
+    value: "+995 595 568 805",
+    href: "tel:+995595568805",
+    icon: <FiPhone size={20} />,
+    note: "Available for direct contact when needed",
+  },
+];
 
 function Contacts() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("abudytawakalna@gmail.com");
+  const handleCopyEmail = async () => {
+    await navigator.clipboard.writeText(email);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    window.setTimeout(() => setCopied(false), 1800);
   };
 
-  const contacts = [
-    {
-      icon: <FiMail className="w-6 h-6" />,
-      label: "Email",
-      value: "abudytawakalna@gmail.com",
-      action: handleCopyEmail,
-      hoverText: copied ? "Copied!" : "Click to copy",
-    },
-    {
-      icon: <FiGithub className="w-6 h-6" />,
-      label: "GitHub",
-      value: "github.com/1jvxe",
-      href: "https://github.com/1jvxe",
-    },
-    {
-      icon: <FiLinkedin className="w-6 h-6" />,
-      label: "LinkedIn",
-      value: "linkedin.com/in/abdal-rahman-tawakalna",
-      href: "https://www.linkedin.com/in/abdal-rahman-tawakalna-a267b23b2",
-    },
-    {
-      icon: <FiPhone className="w-6 h-6" />,
-      label: "Phone",
-      value: "+995 595 568 805",
-    },
-  ];
-
   return (
-    <section className="max-w-4xl mx-auto px-6 py-20">
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl font-bold mb-8 text-center"
-      >
-        Contact Me
-      </motion.h1>
+    <section className="section-wrap pb-16">
+      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="glass-panel rounded-[36px] p-7 md:p-10"
+        >
+          <span className="section-label">
+            <span className="accent-dot" />
+            Contact
+          </span>
+          <h1 className="display-title mt-6 text-4xl font-extrabold text-[var(--text)] md:text-6xl">
+            Let&apos;s build something clean, useful, and memorable.
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-[var(--muted)]">
+            If you&apos;re looking for a frontend developer who cares about visual
+            quality, responsiveness, and smooth user experience, I&apos;d love to
+            connect.
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <a href={`mailto:${email}`} className="primary-button">
+              Send an Email
+              <FiArrowUpRight />
+            </a>
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="secondary-button"
+            >
+              <FiCopy />
+              {copied ? "Email Copied" : "Copy Email"}
+            </button>
+          </div>
+        </motion.div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-gray-400 text-center mb-12"
-      >
-        Feel free to reach out if you'd like to collaborate or discuss
-        opportunities.
-      </motion.p>
-
-      <div className="grid sm:grid-cols-2 gap-6">
-        {contacts.map((c, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 + i * 0.2 }}
-            className="flex items-center space-x-4 p-4 border rounded-lg hover:shadow-lg hover:scale-105 transition cursor-pointer"
-            onClick={c.action ? c.action : undefined}
-          >
-            <div className="text-blue-500">{c.icon}</div>
-            {c.href ? (
-              <a
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 font-medium hover:text-blue-500"
-              >
-                {c.value}
-              </a>
-            ) : (
-              <span className="text-gray-700 font-medium">{c.value}</span>
-            )}
-            {c.action && (
-              <span className="ml-auto text-sm text-gray-400">
-                {c.hoverText}
-              </span>
-            )}
-          </motion.div>
-        ))}
+        <div className="grid gap-5">
+          {contactItems.map((item, index) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.12 + index * 0.1, duration: 0.45 }}
+              whileHover={{ y: -4 }}
+              className="soft-card rounded-[30px] p-6"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl bg-[var(--soft-accent)] p-3 text-[var(--secondary)]">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--muted)]/70">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-[var(--text)]">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                      {item.note}
+                    </p>
+                  </div>
+                </div>
+                <FiArrowUpRight className="mt-1 text-[var(--muted)]" />
+              </div>
+            </motion.a>
+          ))}
+        </div>
       </div>
     </section>
   );
